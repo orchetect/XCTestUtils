@@ -3,7 +3,7 @@
 //  XCTestUtils • https://github.com/orchetect/XCTestUtils
 //
 
-#if shouldTestCurrentPlatform
+#if currentPlatformSupportsXCTest
 
 import XCTest
 import XCTestUtils
