@@ -9,8 +9,8 @@ import XCTest
 
 extension XCTestCase {
     
-    /// **OTCore:**
-    /// Wait for a condition to be true, with a timeout period.
+    /// Wait for an equality condition to be true, with a timeout period.
+    /// 
     /// Polling defaults to every 10 milliseconds, but can be overridden.
     public func wait<T>(
         for lhs: @autoclosure () throws -> T,
