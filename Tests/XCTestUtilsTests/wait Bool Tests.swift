@@ -8,7 +8,7 @@
 import XCTest
 import XCTestUtils
 
-class Utilities_WaitForConditionTests: XCTestCase {
+final class WaitForConditionTests: XCTestCase {
     
     func testWaitForCondition_True() {
         

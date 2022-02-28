@@ -8,7 +8,7 @@
 import XCTest
 import XCTestUtils
 
-class Utilities_WaitForEqualTests: XCTestCase {
+final class WaitForConditionEqualsTests: XCTestCase {
     
     func testWaitForEqual_True() {
         
