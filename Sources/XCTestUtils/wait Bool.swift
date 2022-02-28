@@ -23,7 +23,6 @@ extension XCTestCase {
         
         let inTime = Date()
         let timeoutTime = inTime + timeout
-        let pollingPeriodMicroseconds = UInt32(polling * 1_000_000)
         
         var continueLooping = true
         var timedOut = false
@@ -39,7 +38,7 @@ extension XCTestCase {
             continueLooping = !conditionResult
             if !continueLooping { continue }
             
-            usleep(pollingPeriodMicroseconds)
+            wait(sec: polling)
         }
         
         if timedOut {
