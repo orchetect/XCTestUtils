@@ -21,7 +21,7 @@ class WaitTests: XCTestCase {
         let diff = outTime - inTime
                                         
         XCTAssertGreaterThan(diff, 0.99999)
-        XCTAssertLessThan(diff, 1.1)
+        XCTAssertLessThan(diff, 1.25)
         
     }
     
