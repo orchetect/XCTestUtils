@@ -25,7 +25,8 @@ wait(for: x > 10, timeout: 1.5, "Description of waiter")
 // closures can also be used for more complex expressions
 wait(for: {
     let x = a + b
-    return x > 10
+    let y = check ? 5 : 10
+    return x == y
 }, timeout: 1.5)
 ```
 
@@ -42,9 +43,9 @@ wait(for: {
     return x > 10
 }, equals: {
     #if os(macOS)
-    10
-    #elseif os(iOS)
-    15
+        10
+    #else
+        15
     #endif
 }, timeout: 1.5)
 ```
