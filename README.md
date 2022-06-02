@@ -4,6 +4,39 @@
 
 Useful XCTest utilities and extensions for test targets.
 
+## Overview
+
+Currently, the library provides a small but useful set of XCTest related methods.
+
+## Wait for Expression
+
+Two wait methods are implemented which may be useful in asynchronous testing scenarios where using XCTest expectations is not possible.
+
+These methods allow for the continuous evaluation of an autoclosure expression with a timeout period in seconds. If the wait times out, it triggers a test fail. The evaluation is done every 10 milliseconds by default, but the interfal can be overridden with a custom polling period.
+
+```swift
+// wait for expression:
+// useful for non-equatability tests or tests where the test value
+// is not required to be logged in failure log messages
+wait(for: x > 10, timeout: 1.5)
+wait(for: x > 10, timeout: 1.5, "Description of waiter")
+```
+
+```swift
+// wait for equality
+// useful where the test value is required to be logged in failure log messages
+wait(for: x, equals: 10, timeout: 1.5)
+wait(for: x, equals: 10, timeout: 1.5, "Description of waiter")
+```
+
+### General Wait
+
+A generic non-blocking wait method is also provided:
+
+```swift
+wait(sec: 1.5) // seconds
+```
+
 ## Installation: Swift Package Manager (SPM)
 
 ### Dependency within an Application
