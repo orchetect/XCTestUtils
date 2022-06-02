@@ -43,6 +43,41 @@ final class WaitForConditionTests: XCTestCase {
         
     }
     
+    func testWaitClosures() {
+        
+        let a = 2
+        let b = 3
+        
+        let check = true
+        
+        wait(for: {
+            let x = a + b
+            let y = check ? 5 : 10
+            return x == y
+        }, timeout: 0.1)
+        
+    }
+    
+    #if swift(>=5.4)
+    /// `XCTExpectFailure()` is only available in Xcode 12.5 or later. Swift 5.4 shipped in Xcode 12.5.
+    func testWaitClosures_False() {
+        
+        XCTExpectFailure()
+        
+        let a = 2
+        let b = 3
+        
+        let check = false
+        
+        wait(for: {
+            let x = a + b
+            let y = check ? 5 : 10
+            return x == y
+        }, timeout: 0.1)
+        
+    }
+    #endif
+    
 }
 
 #endif
