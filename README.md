@@ -18,15 +18,35 @@ These methods allow for the continuous evaluation of an autoclosure expression w
 // wait for expression:
 // useful for non-equatability tests or tests where the test value
 // is not required to be logged in failure log messages
+// (akin to XCTAssertTrue)
 wait(for: x > 10, timeout: 1.5)
 wait(for: x > 10, timeout: 1.5, "Description of waiter")
+
+// closures can also be used for more complex expressions
+wait(for: {
+    let x = a + b
+    return x > 10
+}, timeout: 1.5)
 ```
 
 ```swift
-// wait for equality
+// wait for equality:
 // useful where the test value is required to be logged in failure log messages
+// (akin to XCTAssertEqual)
 wait(for: x, equals: 10, timeout: 1.5)
 wait(for: x, equals: 10, timeout: 1.5, "Description of waiter")
+
+// closures can also be used for more complex expressions
+wait(for: {
+    let x = a + b
+    return x > 10
+}, equals: {
+    #if os(macOS)
+    10
+    #elseif os(iOS)
+    15
+    #endif
+}, timeout: 1.5)
 ```
 
 ### General Wait
