@@ -10,7 +10,7 @@ import XCTest
 extension XCTestCase {
     
     /// Wait for a condition to be true, with a timeout period.
-    /// 
+    ///
     /// Polling defaults to every 10 milliseconds, but can be overridden.
     public func wait(
         for condition: @autoclosure () -> Bool,
