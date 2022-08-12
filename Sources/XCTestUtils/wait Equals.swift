@@ -8,9 +8,8 @@
 import XCTest
 
 extension XCTestCase {
-    
     /// Wait for an equality condition to be true, with a timeout period.
-    /// 
+    ///
     /// Polling defaults to every 10 milliseconds, but can be overridden.
     public func wait<T>(
         for lhs: @autoclosure () throws -> T,
@@ -20,8 +19,7 @@ extension XCTestCase {
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line
-    ) where T : Equatable {
-        
+    ) where T: Equatable {
         let inTime = Date()
         let timeoutTime = inTime + timeout
         
@@ -46,13 +44,15 @@ extension XCTestCase {
             var msg = message()
             msg = msg.isEmpty ? "" : ": \(msg)"
             
-            try XCTAssertEqual(lhs(), rhs(),
-                               "wait timeout",
-                               file: file,
-                               line: line)
+            try XCTAssertEqual(
+                lhs(),
+                rhs(),
+                "wait timeout",
+                file: file,
+                line: line
+            )
             return
         }
-        
     }
     
     /// Wait for an equality condition to be true, with a timeout period.
@@ -67,8 +67,7 @@ extension XCTestCase {
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line
-    ) where T : Equatable {
-        
+    ) where T: Equatable {
         let inTime = Date()
         let timeoutTime = inTime + timeout
         
@@ -93,15 +92,16 @@ extension XCTestCase {
             var msg = message()
             msg = msg.isEmpty ? "" : ": \(msg)"
             
-            try XCTAssertEqual(lhs(), rhs(),
-                               "wait timeout",
-                               file: file,
-                               line: line)
+            try XCTAssertEqual(
+                lhs(),
+                rhs(),
+                "wait timeout",
+                file: file,
+                line: line
+            )
             return
         }
-        
     }
-    
 }
 
 #endif

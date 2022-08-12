@@ -9,9 +9,7 @@ import XCTest
 import XCTestUtils
 
 class WaitTests: XCTestCase {
-    
     func testWaitForEqual_True() {
-        
         let inTime = Date().timeIntervalSince1970
         
         wait(sec: 1.0)
@@ -22,9 +20,7 @@ class WaitTests: XCTestCase {
         
         XCTAssertGreaterThan(diff, 0.99999)
         XCTAssertLessThan(diff, 1.25)
-        
     }
-    
 }
 
 #endif

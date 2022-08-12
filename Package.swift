@@ -8,7 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "XCTestUtils",
-            targets: ["XCTestUtils"]),
+            targets: ["XCTestUtils"]
+        )
     ],
     
     dependencies: [
@@ -18,10 +19,12 @@ let package = Package(
     targets: [
         .target(
             name: "XCTestUtils",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "XCTestUtilsTests",
-            dependencies: ["XCTestUtils"]),
+            dependencies: ["XCTestUtils"]
+        )
     ]
 )
 

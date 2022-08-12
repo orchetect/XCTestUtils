@@ -8,7 +8,6 @@
 import XCTest
 
 extension XCTestCase {
-    
     /// Wait for a condition to be true, with a timeout period.
     ///
     /// Polling defaults to every 10 milliseconds, but can be overridden.
@@ -20,7 +19,6 @@ extension XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        
         let inTime = Date()
         let timeoutTime = inTime + timeout
         
@@ -45,12 +43,13 @@ extension XCTestCase {
             var msg = message()
             msg = msg.isEmpty ? "" : ": \(msg)"
             
-            XCTFail("wait timed out\(msg)",
-                    file: file,
-                    line: line)
+            XCTFail(
+                "wait timed out\(msg)",
+                file: file,
+                line: line
+            )
             return
         }
-        
     }
     
     /// Wait for a condition to be true, with a timeout period.
@@ -65,7 +64,6 @@ extension XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        
         let inTime = Date()
         let timeoutTime = inTime + timeout
         
@@ -90,14 +88,14 @@ extension XCTestCase {
             var msg = message()
             msg = msg.isEmpty ? "" : ": \(msg)"
             
-            XCTFail("wait timed out\(msg)",
-                    file: file,
-                    line: line)
+            XCTFail(
+                "wait timed out\(msg)",
+                file: file,
+                line: line
+            )
             return
         }
-        
     }
-    
 }
 
 #endif
