@@ -4,7 +4,7 @@
 //  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
-#if currentPlatformSupportsXCTest && canImport(XCTest)
+#if shouldTestCurrentPlatform && canImport(XCTest)
 
 import XCTest
 

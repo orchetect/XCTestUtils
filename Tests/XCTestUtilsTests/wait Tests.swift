@@ -4,7 +4,7 @@
 //  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
-#if currentPlatformSupportsXCTest
+#if shouldTestCurrentPlatform
 
 import XCTest
 import XCTestUtils
