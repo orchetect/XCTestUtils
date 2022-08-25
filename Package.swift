@@ -34,7 +34,7 @@ let package = Package(
 
 func addShouldTestFlag() {
     // XCTestUtils requires this flag in all targets, not just test targets
-    package.targets /* .map { $0.isTest } */ .forEach { target in
+    package.targets /* .filter { $0.isTest } */ .forEach { target in
         if target.swiftSettings == nil { target.swiftSettings = [] }
         target.swiftSettings?.append(.define("shouldTestCurrentPlatform"))
     }
