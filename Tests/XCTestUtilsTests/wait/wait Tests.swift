@@ -9,7 +9,7 @@
 import XCTest
 import XCTestUtils
 
-class WaitTests: XCTestCase {
+final class WaitTests: XCTestCase {
     func testWaitForEqual_True() {
         let inTime = Date().timeIntervalSince1970
         
