@@ -1,9 +1,7 @@
 //
 //  SegmentedProgress.swift
-//  SegmentedProgress
-//
-//  Created by Steffan Andrews on 2019-10-06.
-//  Copyright © 2019 Steffan Andrews. All rights reserved.
+//  XCTestUtils • https://github.com/orchetect/XCTestUtils
+//  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -80,14 +78,14 @@ public struct SegmentedProgress<T: BinaryInteger> {
         segments: Int = 100,
         roundedToPlaces: Int = 0
     ) {
-        self.minValue = range.lowerBound
-        self.dblMinValue = Double(self.minValue)
+        minValue = range.lowerBound
+        dblMinValue = Double(minValue)
 		
-        self.maxValue = range.upperBound
-        self.dblMaxValue = Double(self.maxValue)
+        maxValue = range.upperBound
+        dblMaxValue = Double(maxValue)
 		
         self.segments = segments
-        self.lastSegmentValue = dblMinValue
+        lastSegmentValue = dblMinValue
         calculateSegmentInterval() // must call this here since segments didSet won't trigger from init
 		
         self.roundedToPlaces = roundedToPlaces

@@ -1,9 +1,7 @@
 //
 //  Utilities.swift
-//  SegmentedProgress
-//
-//  Created by Steffan Andrews on 2019-10-06.
-//  Copyright © 2019 Steffan Andrews. All rights reserved.
+//  XCTestUtils • https://github.com/orchetect/XCTestUtils
+//  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
