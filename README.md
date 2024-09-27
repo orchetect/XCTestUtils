@@ -63,9 +63,12 @@ wait(sec: 1.5) // seconds
 ### Dependency within an Application
 
 1. Add the package to your Xcode project's test target(s) using Swift Package Manager
+
    - Select File → Swift Packages → Add Package Dependency
    - Add package using  `https://github.com/orchetect/XCTestUtils` as the URL.
+
 2. Import the module in your *.swift test files where needed.
+
    ```swift
    import XCTest
    import XCTestUtils
@@ -73,16 +76,20 @@ wait(sec: 1.5) // seconds
 
 ### Dependency within a Swift Package
 
-1. In your Package.swift file:
+1. Add the dependency in your Package.swift file:
 
    ```swift
    dependencies: [
        .package(url: "https://github.com/orchetect/XCTestUtils", from: "1.0.0")
    ],
    ```
-   
-2. Add the dependency to
 
+2. Import the module in your *.swift test files where needed.
+
+   ```swift
+   import XCTest
+   import XCTestUtils
+   ```
 
 Most methods are implemented as category methods so they are generally discoverable.
 
