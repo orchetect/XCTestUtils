@@ -22,18 +22,49 @@ final class WaitForConditionTests: XCTestCase {
     #endif
     
     func testWaitForCondition() {
-        var someString = "default string"
-        
-        // note: this will throw a thread sanitizer warning but it's safe to ignore for this test
-        DispatchQueue.global().async {
-            usleep(20000)
-            someString = "new string"
+        final actor Val: Sendable {
+            var someString = "default string"
+            func update(_ string: String) {
+                someString = string
+            }
         }
         
+        let val = Val()
+        
+        // note: this will throw a thread sanitizer warning but it's safe to ignore for this test
+        DispatchQueue.global().async { [val] in
+            usleep(20000)
+            Task { await val.update("new string") }
+        }
+        
+        var exp: Bool { val.someString == "new string" }
         wait(
-            for: someString == "new string",
+            for: exp,
             timeout: 0.3,
-            "Check someString == 'new string'"
+            "Check someString"
+        )
+    }
+    
+    func testWaitForConditionAsync() async {
+        final actor Val: Sendable {
+            var someString = "default string"
+            func update(_ string: String) {
+                someString = string
+            }
+        }
+        
+        let val = Val()
+        
+        // note: this will throw a thread sanitizer warning but it's safe to ignore for this test
+        DispatchQueue.global().async { [val] in
+            usleep(20000)
+            Task { await val.update("new string") }
+        }
+        
+        await wait(
+            for: await val.someString == "new string",
+            timeout: 0.3,
+            "Check someString"
         )
     }
     
@@ -45,6 +76,22 @@ final class WaitForConditionTests: XCTestCase {
         
         wait(for: {
             let x = a + b
+            let y = check ? 5 : 10
+            return x == y
+        }, timeout: 0.1)
+    }
+    
+    func testWaitClosuresAsync() async {
+        final actor Val: Sendable {
+            let a = 2
+            var b: Int { 3 }
+        }
+        let check = true
+        
+        let val = Val()
+        
+        await wait(for: {
+            let x = await val.a + val.b
             let y = check ? 5 : 10
             return x == y
         }, timeout: 0.1)
