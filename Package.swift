@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "XCTestUtils",
     platforms: [
-        .macOS(.v10_10), .iOS(.v9), .tvOS(.v9), .watchOS(.v2)
+        .macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
     ],
     products: [
         .library(name: "XCTestUtils", targets: ["XCTestUtils"])
