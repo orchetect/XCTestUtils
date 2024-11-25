@@ -4,8 +4,6 @@
 //  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
-#if shouldTestCurrentPlatform
-
 import XCTest
 import XCTestUtils
 
@@ -23,5 +21,3 @@ final class WaitTests: XCTestCase {
         XCTAssertLessThan(diff, 1.25)
     }
 }
-
-#endif

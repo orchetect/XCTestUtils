@@ -4,8 +4,6 @@
 //  © 2022 Steffan Andrews • Licensed under MIT License
 //
 
-#if shouldTestCurrentPlatform
-
 import XCTest
 @testable import XCTestUtils
 
@@ -133,5 +131,3 @@ class SegmentedProgressTests: XCTestCase {
         XCTAssertEqual(buildString, "0% 100%")
     }
 }
-
-#endif
