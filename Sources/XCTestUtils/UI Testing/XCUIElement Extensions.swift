@@ -9,7 +9,7 @@
 import XCTest
 
 extension XCUIElement {
-    /// Convenience method to wrap `XCUIElement`'s `waitForExistence(timeout:)` in a throwing method.
+    /// Wraps `XCUIElement`'s `waitForExistence(timeout:)` in a throwing method.
     /// Returns the element if it is found.
     ///
     /// Example usage:
@@ -22,16 +22,22 @@ extension XCUIElement {
     /// await okButton.click()
     /// ```
     ///
-    /// - Parameter timeout: Timeout time interval in seconds.
+    /// - Parameters:
+    ///   - timeout: Timeout time interval in seconds.
+    ///   - error: Error to throw if the waiter times out.
+    /// - Returns: Returns the element if it is found before the timeout expires.
     @discardableResult
-    public func waitForExistence(throwingTimeout timeout: TimeInterval) throws -> Self {
+    public func waitForExistence(
+        throwingTimeout timeout: TimeInterval,
+        error: Error = XCTestError(.timeoutWhileWaiting)
+    ) throws -> Self {
         guard waitForExistence(timeout: timeout) else {
-            throw XCTestError(.timeoutWhileWaiting)
+            throw error
         }
         return self
     }
     
-    /// Convenience method to wrap `XCUIElement`'s `waitForNonExistence(timeout:)` in a throwing method.
+    /// Wraps `XCUIElement`'s `waitForNonExistence(timeout:)` in a throwing method.
     ///
     /// Example usage:
     ///
@@ -39,9 +45,42 @@ extension XCUIElement {
     /// let okButton = await app.buttons["OK"].firstMatch
     /// try await okButton.waitForNonExistence(throwingTimeout: 2.0)
     /// ```
-    public func waitForNonExistence(throwingTimeout timeout: TimeInterval) throws {
+    ///
+    /// - Parameters:
+    ///   - timeout: Timeout time interval in seconds.
+    ///   - error: Error to throw if the waiter times out.
+    public func waitForNonExistence(
+        throwingTimeout timeout: TimeInterval,
+        error: Error = XCTestError(.timeoutWhileWaiting)
+    ) throws {
         guard waitForNonExistence(timeout: timeout) else {
-            throw XCTestError(.timeoutWhileWaiting)
+            throw error
+        }
+    }
+    
+    /// Wraps `XCUIElement`'s `wait(for:toEqual:timeout:)` in a throwing method.
+    ///
+    /// Example usage:
+    ///
+    /// ```swift
+    /// let okButton = await app.staticTexts["Idle"].firstMatch
+    /// try await okButton.wait(for: \.label, toEqual: "Active", throwingTimeout: 2.0)
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - keyPath: Key path to an equatable property of the element.
+    ///   - expectedValue: The expected value of the property to equal.
+    ///   - timeout: Timeout time interval in seconds.
+    ///   - error: Error to throw if the waiter times out.
+    @preconcurrency
+    public func wait<V>(
+        for keyPath: KeyPath<XCUIElement, V>,
+        toEqual expectedValue: V,
+        throwingTimeout timeout: TimeInterval,
+        error: Error = XCTestError(.timeoutWhileWaiting)
+    ) throws where V: Equatable {
+        guard wait(for: keyPath, toEqual: expectedValue, timeout: timeout) else {
+            throw error
         }
     }
 }
