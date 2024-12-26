@@ -48,7 +48,9 @@ final class WaitForConditionEqualsTests: XCTestCase {
         )
     }
     
-    @MainActor // <-- only needed for backwards-compatibility requirements for Xcode 13
+    #if swift(<6.0)
+    @MainActor // <-- only needed for backwards-compatibility requirements for Xcode 13 / pre-Swift 6
+    #endif
     func testWaitForEqualAsync() async throws {
         final actor Val: Sendable {
             var someString = "default string"
