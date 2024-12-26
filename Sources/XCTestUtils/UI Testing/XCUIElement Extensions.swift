@@ -1,7 +1,7 @@
 //
 //  XCUIElement Extensions.swift
 //  XCTestUtils • https://github.com/orchetect/XCTestUtils
-//  © 2022 Steffan Andrews • Licensed under MIT License
+//  © 2024 Steffan Andrews • Licensed under MIT License
 //
 
 #if canImport(XCTest)
@@ -36,7 +36,12 @@ extension XCUIElement {
         }
         return self
     }
-    
+}
+
+// `waitForNonExistence(timeout:)` and `wait(for:isEqual:timeout:)`
+// were introduced in Xcode 16.0
+#if compiler(>=6.0)
+extension XCUIElement {
     /// Wraps `XCUIElement`'s `waitForNonExistence(timeout:)` in a throwing method.
     ///
     /// Example usage:
@@ -84,5 +89,6 @@ extension XCUIElement {
         }
     }
 }
+#endif
 
 #endif
