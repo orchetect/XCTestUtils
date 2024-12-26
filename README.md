@@ -92,7 +92,7 @@ try await okButton.wait(for: \.label, toEqual: "Active", throwingTimeout: 2.0)
 
 1. Add the package to your Xcode project's test target(s) using `https://github.com/orchetect/XCTestUtils` as the URL.
 
-2. Import the module in your `*.swift` test files where needed.
+2. Import the module in your test files where needed.
 
    ```swift
    import XCTest
@@ -109,20 +109,24 @@ try await okButton.wait(for: \.label, toEqual: "Active", throwingTimeout: 2.0)
    ],
    ```
 
-2. Import the module in test files where needed.
+## Usage
 
-   ```swift
-   import XCTest
-   import XCTestUtils
-   ```
+Import the module in test files where needed.
 
-Most methods are implemented as category methods so they are generally discoverable.
+```swift
+import XCTest
+import XCTestUtils
+```
+
+## Documentation
+
+This README serves as basic documentation.
 
 All methods have inline help explaining their purpose and basic usage examples.
 
 ## Requirements
 
-- Minimum system requirements for testing: Xcode 13 or higher on macOS 11.3 or higher
+Minimum system requirements for testing: Xcode 13 or higher on macOS 11.3 or higher
 
 ## Author
 
