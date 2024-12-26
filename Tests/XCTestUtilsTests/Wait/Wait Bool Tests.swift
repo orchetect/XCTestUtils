@@ -21,6 +21,7 @@ final class WaitForConditionTests: XCTestCase {
     }
     #endif
     
+    // Note that this test is over-built, but only to meet backwards-compatibility requirements for Xcode 13
     @MainActor
     func testWaitForCondition() {
         @MainActor final class Val: Sendable {
@@ -38,9 +39,9 @@ final class WaitForConditionTests: XCTestCase {
             Task { await val.update("new string") }
         }
         
-        var exp: Bool { val.someString == "new string" }
+        let exp: @MainActor () -> Bool = { val.someString == "new string" }
         wait(
-            for: exp,
+            for: exp(),
             timeout: 0.3,
             "Check someString"
         )

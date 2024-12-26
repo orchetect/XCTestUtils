@@ -21,6 +21,7 @@ final class WaitForConditionEqualsTests: XCTestCase {
     }
     #endif
     
+    // Note that this test is over-built, but only to meet backwards-compatibility requirements for Xcode 13
     @MainActor
     func testWaitForEqual() {
         @MainActor final class Val: Sendable {
@@ -38,15 +39,16 @@ final class WaitForConditionEqualsTests: XCTestCase {
             Task { await val.update("new string") }
         }
         
-        var str: String { val.someString }
+        let str: @MainActor () -> String = { val.someString }
         wait(
-            for: str,
+            for: str(),
             equals: "new string",
             timeout: 0.3,
             "Check someString == 'new string'"
         )
     }
     
+    @MainActor // <-- only needed for backwards-compatibility requirements for Xcode 13
     func testWaitForEqualAsync() async throws {
         final actor Val: Sendable {
             var someString = "default string"
