@@ -1,6 +1,6 @@
 # XCTestUtils
 
-[![CI Build Status](https://github.com/orchetect/XCTestUtils/actions/workflows/build.yml/badge.svg)](https://github.com/orchetect/XCTestUtils/actions/workflows/build.yml) [![Platforms - macOS 10.10+ | iOS 9+ | tvOS 9+ | watchOS 2+ | visionOS 1+](https://img.shields.io/badge/platforms-macOS%2010.10+%20|%20iOS%209+%20|%20tvOS%209+%20|%20watchOS%202+%20|%20visionOS%201+-lightgrey.svg?style=flat)](https://developer.apple.com/swift) ![Swift 5.3-5.9](https://img.shields.io/badge/Swift-5.3–5.9-orange.svg?style=flat) [![Xcode 12.0-15](https://img.shields.io/badge/Xcode-12.0–15-blue.svg?style=flat)](https://developer.apple.com/swift) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/XCTestUtils/blob/main/LICENSE)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2FXCTestUtils%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/orchetect/XCTestUtils) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2FXCTestUtils%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/orchetect/XCTestUtils) [![Xcode 12-16](https://img.shields.io/badge/Xcode-12–16-blue.svg?style=flat)](https://developer.apple.com/swift) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/XCTestUtils/blob/main/LICENSE)
 
 Useful XCTest utilities and extensions for test targets.
 
@@ -58,14 +58,39 @@ A generic non-blocking wait method is also provided:
 wait(sec: 1.5) // seconds
 ```
 
+### UI Testing
+
+A small assortment of throwing wrappers for `XCUIElement` methods are implemented.
+
+`waitForExistence(timeout:) -> Bool` wrapped in a throwing method:
+
+```swift
+let okButton = try await app
+    .buttons["OK"]
+    .waitForExistence(throwingTimeout: 2.0)
+
+await okButton.click()
+```
+
+`waitForNonExistence(timeout:) -> Bool` wrapped in a throwing method:
+
+```swift
+let okButton = await app.buttons["OK"].firstMatch
+try await okButton.waitForNonExistence(throwingTimeout: 2.0)
+```
+
+`wait(for:toEqual:timeout:) -> Bool` wrapped in a throwing method:
+
+```swift
+let okButton = await app.staticTexts["Idle"].firstMatch
+try await okButton.wait(for: \.label, toEqual: "Active", throwingTimeout: 2.0)
+```
+
 ## Installation: Swift Package Manager (SPM)
 
 ### Dependency within an Application
 
-1. Add the package to your Xcode project's test target(s) using Swift Package Manager
-
-   - Select File → Swift Packages → Add Package Dependency
-   - Add package using `https://github.com/orchetect/XCTestUtils` as the URL.
+1. Add the package to your Xcode project's test target(s) using `https://github.com/orchetect/XCTestUtils` as the URL.
 
 2. Import the module in your `*.swift` test files where needed.
 
@@ -80,11 +105,11 @@ wait(sec: 1.5) // seconds
 
    ```swift
    dependencies: [
-       .package(url: "https://github.com/orchetect/XCTestUtils", from: "1.0.0")
+       .package(url: "https://github.com/orchetect/XCTestUtils", from: "1.1.2")
    ],
    ```
 
-2. Import the module in your `*.swift` test files where needed.
+2. Import the module in test files where needed.
 
    ```swift
    import XCTest
