@@ -21,8 +21,9 @@ final class WaitForConditionEqualsTests: XCTestCase {
     }
     #endif
     
+    @MainActor
     func testWaitForEqual() {
-        final actor Val: Sendable {
+        @MainActor final class Val: Sendable {
             var someString = "default string"
             func update(_ string: String) {
                 someString = string
