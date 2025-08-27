@@ -124,7 +124,7 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: success()
+      if: ${{ success() }}
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=iOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
 
   tvOS:
@@ -156,7 +156,7 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: success()
+      if: ${{ success() }}
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=tvOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
       
   watchOS:
@@ -188,5 +188,5 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: success()
+      if: ${{ success() }}
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=watchOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
