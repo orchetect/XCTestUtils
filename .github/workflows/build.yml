@@ -28,72 +28,72 @@ env:
   SCHEME: "XCTestUtils-CI"
 
 jobs:
-  # macOS-13:
-  #   name: macOS 13
-  #   runs-on: macos-13
-  #   steps:
-  #   - uses: actions/checkout@main
-  #   - uses: maxim-lobanov/setup-xcode@v1
-  #     with:
-  #       xcode-version: latest-stable
-  #   - name: Build
-  #     run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #   - name: Unit Tests
-  #     run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #
-  # macOS-14:
-  #   name: macOS 14
-  #   runs-on: macos-14
-  #   steps:
-  #   - uses: actions/checkout@main
-  #   - uses: maxim-lobanov/setup-xcode@v1
-  #     with:
-  #       xcode-version: latest-stable
-  #   - name: Build
-  #     run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #   - name: Unit Tests
-  #     run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #
-  # macOS:
-  #   name: macOS (Latest Stable Xcode)
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@main
-  #   - uses: maxim-lobanov/setup-xcode@v1
-  #     with:
-  #       xcode-version: latest-stable
-  #   - name: Build
-  #     run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #   - name: Unit Tests
-  #     run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #
-  # macOS-swift6:
-  #   name: macOS (Latest Stable Xcode) (Swift 6)
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@main
-  #   - uses: maxim-lobanov/setup-xcode@v1
-  #     with:
-  #       xcode-version: latest-stable
-  #   - name: Set Package to Swift 6.0
-  #     run: swift package tools-version --set "6.0"
-  #   - name: Build
-  #     run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #   - name: Unit Tests
-  #     run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #
-  # macCatalyst:
-  #   name: macCatalyst
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@main
-  #   - uses: maxim-lobanov/setup-xcode@v1
-  #     with:
-  #       xcode-version: latest-stable
-  #   - name: Build
-  #     run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,variant=Mac Catalyst,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
-  #   - name: Unit Tests
-  #     run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS,variant=Mac Catalyst" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+  macOS-13:
+    name: macOS 13
+    runs-on: macos-13
+    steps:
+    - uses: actions/checkout@main
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build
+      run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+    - name: Unit Tests
+      run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+  
+  macOS-14:
+    name: macOS 14
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@main
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build
+      run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+    - name: Unit Tests
+      run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+  
+  macOS:
+    name: macOS (Latest Stable Xcode)
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@main
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build
+      run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+    - name: Unit Tests
+      run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+  
+  macOS-swift6:
+    name: macOS (Latest Stable Xcode) (Swift 6)
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@main
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Set Package to Swift 6.0
+      run: swift package tools-version --set "6.0"
+    - name: Build
+      run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+    - name: Unit Tests
+      run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+  
+  macCatalyst:
+    name: macCatalyst
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@main
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build
+      run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=macOS,variant=Mac Catalyst,name=Any Mac" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
+    - name: Unit Tests
+      run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=macOS,variant=Mac Catalyst" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
   
   iOS:
     name: iOS
@@ -107,10 +107,14 @@ jobs:
       run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=iOS Simulator,name=Any iOS Device" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
     - name: Prepare Destination Device Name
       id: destnameprep
+      # As of GitHub's updates to the macOS-15 runner summer 2025, randomly Xcode may not list any simulators.
+      # No idea why. Seems like a bug or runner config issue. So to prevent false-positive job failures, we'll skip
+      # the unit tests if no devices are found, but mark the unit test step as cancelled. The job is still marked as
+      # passed (green), but the Unit Tests step will show cancelled. This is the best we can do, as there appears to
+      # be no way to "cancel" an individual job programmatically.
       continue-on-error: true
       shell: bash
       run: |
-        exit 1
         xcodebuild -showdestinations -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" > destinations.txt
         SIMPLATFORM="iOS"
         SIMDEVICE="iPhone\s\d{2}\s"
@@ -124,7 +128,7 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: steps.destnameprep.status != failure()
+      if: steps.destnameprep.outcome != 'failure'
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=iOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
 
   tvOS:
@@ -139,10 +143,14 @@ jobs:
       run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=tvOS Simulator,name=Any tvOS Simulator Device" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
     - name: Prepare Destination Device Name
       id: destnameprep
+      # As of GitHub's updates to the macOS-15 runner summer 2025, randomly Xcode may not list any simulators.
+      # No idea why. Seems like a bug or runner config issue. So to prevent false-positive job failures, we'll skip
+      # the unit tests if no devices are found, but mark the unit test step as cancelled. The job is still marked as
+      # passed (green), but the Unit Tests step will show cancelled. This is the best we can do, as there appears to
+      # be no way to "cancel" an individual job programmatically.
       continue-on-error: true
       shell: bash
       run: |
-        exit 1
         xcodebuild -showdestinations -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" > destinations.txt
         SIMPLATFORM="tvOS"
         SIMDEVICE="Apple\sTV"
@@ -156,7 +164,7 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: steps.destnameprep.status != failure()
+      if: steps.destnameprep.outcome != 'failure'
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=tvOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
       
   watchOS:
@@ -171,10 +179,14 @@ jobs:
       run: xcodebuild build -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "generic/platform=watchOS Simulator,name=Any watchOS Simulator Device" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
     - name: Prepare Destination Device Name
       id: destnameprep
+      # As of GitHub's updates to the macOS-15 runner summer 2025, randomly Xcode may not list any simulators.
+      # No idea why. Seems like a bug or runner config issue. So to prevent false-positive job failures, we'll skip
+      # the unit tests if no devices are found, but mark the unit test step as cancelled. The job is still marked as
+      # passed (green), but the Unit Tests step will show cancelled. This is the best we can do, as there appears to
+      # be no way to "cancel" an individual job programmatically.
       continue-on-error: true
       shell: bash
       run: |
-        exit 1
         xcodebuild -showdestinations -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" > destinations.txt
         SIMPLATFORM="watchOS"
         SIMDEVICE="Apple\sWatch\sSeries"
@@ -188,5 +200,5 @@ jobs:
         echo "Using device name \"$DESTNAME\""
         echo "DESTNAME=$DESTNAME" >> "$GITHUB_ENV"
     - name: Unit Tests
-      if: steps.destnameprep.status != failure()
+      if: steps.destnameprep.outcome != 'failure'
       run: xcodebuild test -workspace ".swiftpm/xcode/package.xcworkspace" -scheme "$SCHEME" -destination "platform=watchOS Simulator,name=$DESTNAME" | xcbeautify --renderer github-actions && exit ${PIPESTATUS[0]}
